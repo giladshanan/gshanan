@@ -24,6 +24,25 @@ class Spaceship
     @location = location
   end
 
+  def tractor_beam(item)
+    disable_shield
+    total_weight= 0
+    item.chars.each do | letter |
+      weight = letter.ord
+      total_weight += weight
+      end
+    if total_weight < 500
+      @inventory[item] = @location
+      enable_shield
+      return true
+    else
+      return false
+    end
+  end
+
+
+
+
 end
 
 
@@ -56,4 +75,23 @@ end
 # Q5
 p falcon = Spaceship.new("Millenium Falcon", 300000)
 falcon.warp_to("Jabba's Palace")
+# p falcon
+
+# Q6
+p falcon.tractor_beam('string') == false
+p falcon.tractor_beam('cow') == true
 p falcon
+
+
+
+
+
+
+# Q6
+# calculate the weight based on .ord
+# IF item weighs less than 500 .ord
+  # add item to inventory with value of location
+  # shields on
+  # return true
+# ELSE
+  #return false
