@@ -26,17 +26,11 @@ class Spaceship
 
   def tractor_beam(item)
     disable_shield
-    total_weight= 0
-    item.chars.each do | letter |
-      weight = letter.ord
-      total_weight += weight
-      end
-    if total_weight < 500
+    if weight(item) < 500
       @inventory[item] = @location
       enable_shield
       return true
     else
-      p total_weight
       return false
     end
   end
@@ -44,6 +38,29 @@ class Spaceship
   def pickup(item, location)
     warp_to(location)
     tractor_beam(item)
+  end
+
+  def print_inventory
+    @inventory.each do | item, location |
+      puts "Picked up #{item} from #{location}."
+    end
+  end
+
+  def weight(item)
+    total_weight = 0
+    item.chars.each do | letter |
+      weight = letter.ord
+      total_weight += weight
+      end
+    return total_weight
+  end
+
+  def total_lbs
+    total_weight = 0
+    @inventory.each do | item, location |
+      total_weight += weight(item)
+    end
+    return total_weight
   end
 
 end
@@ -76,25 +93,35 @@ end
 # end
 
 # Q5
-p falcon = Spaceship.new("Millenium Falcon", 300000)
+falcon = Spaceship.new("Millenium Falcon", 300000)
 falcon.warp_to("Jabba's Palace")
 # p falcon
 
-# Q6
-p falcon.tractor_beam('string') == false
-p falcon.tractor_beam('cow') == true
-p falcon
-
 # Q7
-testing = {"abc" => "Chicago", "def" => "LA", "fried rice" => "San Francisco", "lobster roll" => "Maine"}
+# the code that follows is my "scale", used to test the weight of various strings and to make sure my method is working predictably:
+# total_weight= 0
+# "cow".chars.each do | letter |
+#   weight = letter.ord
+#   total_weight += weight
+# end
+# total_weight
+# p falcon.tractor_beam('string') == false
+# p falcon.tractor_beam('cow') == true
+# p falcon
+
+
+# Q8
+testing = {"cow" => "Chicago", "duck" => "LA", "ox" => "San Francisco", "lobster roll" => "Maine"}
 testing.each do | item, location |
   falcon.pickup(item, location)
-  p falcon
+  # p falcon
   end
 
+# Q9
+falcon.print_inventory
 
-
-
+# Q10
+p falcon.total_lbs == 983
 
 # Q6
 # calculate the weight based on .ord
