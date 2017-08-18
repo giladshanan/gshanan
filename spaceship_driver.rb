@@ -1,6 +1,5 @@
 require_relative 'spaceship'
 
-# driver code
 # Q2
 # launch_base = [Spaceship.new("Millenium Falcon", 300000), Spaceship.new("Firefly", 670000)]
 # p launch_base
@@ -21,8 +20,8 @@ require_relative 'spaceship'
 
 # Q4
 # launch_base.each do | ship |
-#   p ship.enable_shield
 #   p ship.disable_shield
+#   p ship.enable_shield
 # end
 
 # Q5
@@ -31,7 +30,7 @@ falcon.warp_to("Jabba's Palace")
 # p falcon
 
 # Q7
-# p falcon.tractor_beam('string') == false
+# p falcon.tractor_beam('lobster') == false
 # p falcon.tractor_beam('cow') == true
 # p falcon
 
@@ -40,7 +39,7 @@ testing = {
   "cow" => "Chicago",
   "duck" => "LA",
   "ox" => "San Francisco",
-  "lobster roll" => "Maine"}
+  "lobster" => "Maine"}
 testing.each do | item, location |
   falcon.pickup(item, location)
   # p falcon

@@ -5,8 +5,7 @@ class Spaceship
   def initialize(name, max_speed)
     @name = name
     @max_speed = max_speed
-    @shield = false
-    @location = ''
+    @shield = true
     @inventory = {}
 
   end
@@ -42,7 +41,7 @@ class Spaceship
 
   def print_inventory
     @inventory.each do | item, location |
-      puts "Picked up #{item} from #{location}."
+      p "Picked up #{item} from #{location}."
     end
   end
 
