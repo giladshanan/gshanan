@@ -25,8 +25,8 @@ class Spaceship
   end
 
   def tractor_beam(item)
-    disable_shield
     if weight(item) < 500
+      disable_shield
       @inventory[item] = @location
       enable_shield
       return true
