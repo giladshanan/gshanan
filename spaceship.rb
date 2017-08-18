@@ -36,12 +36,15 @@ class Spaceship
       enable_shield
       return true
     else
+      p total_weight
       return false
     end
   end
 
-
-
+  def pickup(item, location)
+    warp_to(location)
+    tractor_beam(item)
+  end
 
 end
 
@@ -82,6 +85,12 @@ p falcon.tractor_beam('string') == false
 p falcon.tractor_beam('cow') == true
 p falcon
 
+# Q7
+testing = {"abc" => "Chicago", "def" => "LA", "fried rice" => "San Francisco", "lobster roll" => "Maine"}
+testing.each do | item, location |
+  falcon.pickup(item, location)
+  p falcon
+  end
 
 
 
